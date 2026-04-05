@@ -3,21 +3,33 @@ import os
 from datetime import datetime
 
 # --- 1. CONFIGURACIÓN DE RUTAS ---
-mi_usuario = "juanhes" 
-ruta_base = rf'C:\Users\{mi_usuario}\Proyectos Desarrollo Soft\TDS\Cruce_horas_programador_nomina\ArchivosCruce'
 
-archivo_prog = os.path.join(ruta_base, 'Programador.xlsm')
-archivo_nom = os.path.join(ruta_base, 'Nomina.csv')
+ruta_base = os.getcwd()
+archivo_prog = os.path.join(ruta_base, 'ArchivosCruce', 'Programador.xlsm')
+archivo_nom = os.path.join(ruta_base, 'ArchivosCruce', 'Nomina.csv')
 
 def redondear_y_normalizar_hora(hora_str):
+    """
+    Limpia, normaliza y redondea registros de tiempo para evitar desfases de 1 minuto.
+    Ideal para procesos de nómina donde se marcan tiempos como 07:59 o 13:29.
+    """
+    # 1. Validación de entrada: Si la celda es nula (NaN) o está vacía, retorna texto vacío
     if pd.isna(hora_str) or str(hora_str).strip() == "": return ""
     try:
+        # 2. Limpieza y segmentación: Quita espacios y divide la cadena por los dos puntos ':'
+        # Ejemplo: " 08:29 " -> ["08", "29"]
         partes = str(hora_str).strip().split(':')
+        # 3. Conversión a entero: Toma las dos primeras partes (HH y MM)
         h, m = int(partes[0]), int(partes[1])
-        if m in [29, 59, 14, 44]:
+        # 4. Lógica de Redondeo Crítico:
+        # Si el minuto es 29 o 59, le sumamos 1 para estandarizar (ej: 07:59 -> 08:00)
+        if m in [29, 59]:
             m += 1
+            # 5. Control de desborde: Si al sumar 1 llegamos a 60 min, reiniciamos a 0 y sumamos 1 hora
             if m == 60: m = 0; h += 1
+        # 6. Retorno formateado: Devuelve un string de 5 caracteres (HH:MM)    
         return f"{h:02d}:{m:02d}"
+    # 7. Plan de contingencia: Si el formato falla, intenta devolver al menos los primeros 5 caracteres limpios
     except: return str(hora_str).strip()[:5]
 
 def ejecutar_conciliacion_v9():
@@ -128,7 +140,7 @@ def ejecutar_conciliacion_v9():
 
     # --- 8. EXPORTACIÓN ---
     ahora = datetime.now().strftime('%Y%m%d_%H%M')
-    ruta_salida = os.path.join(ruta_base, f'Informe_Final_Ajustado_{ahora}.xlsx')
+    ruta_salida = os.path.join(ruta_base, 'ArchivosCruce', f'Informe_Final_{ahora}.xlsx')
 
     with pd.ExcelWriter(ruta_salida) as writer:
         resumen_ejecutivo.to_excel(writer, sheet_name='Resumen Ejecutivo', index=False)
