@@ -1,0 +1,12 @@
+[OPERATOR];userId;status;hours;startDate;startTime;endDate;endTime;timeType;deleteExternalTime;costCenter;category;correctionScenario;externalCode;cust_Orig_User;cust_Cost_Order;cust_Ref;cust_Report_startTime;cust_Report_endTime;cust_Report_startTime_str;cust_Report_endTime_str;
+Operadores admitidos: Delimit; Clear y Delete;Usuario;Estado(Valid Values : NEW/PROCESSED/ERROR/INACTIVE   NEW for Nuevo  PROCESSED for Procesado  ERROR for Error  INACTIVE for Inactivo  );Número de horas;Fecha de inicio;Hora de inicio;Fecha de finalización;Hora de finalización;Tipo de tiempo;Eliminar este dato de tiempo externo(Valid Values : TRUE/FALSE);Centro de coste;Categoría(Valid Values : ATTENDANCE/BREAK   ATTENDANCE for Asistencia  BREAK for Pausa  );Escenario de corrección(Valid Values : TIME_SHEET_AND_EXTERNAL_SYSTEM/EXTERNAL_SYSTEM   TIME_SHEET_AND_EXTERNAL_SYSTEM for Hoja de tiempo de nómina y sistema externo  EXTERNAL_SYSTEM for Sistema externo  );Código externo;Modificador Original;Orden;Ref;Hora de inicio (Rep);Hora de finalización (Rep);Hora de inicio (Rep_STR);Hora de finalización (Rep_STR)
+;20000001;PROCESSED;;01/25/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434823;;;38625988;;;;;
+;20000001;PROCESSED;;02/01/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434824;;;38625988;;;;;
+;20000001;PROCESSED;;02/08/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434825;;;38625988;;;;;
+;20000002;PROCESSED;;02/15/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434826;;;38625988;;;;;
+;20000002;PROCESSED;;02/22/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434827;;;38625988;;;;;
+;20000002;PROCESSED;;03/01/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434828;;;38625988;;;;;
+;20000002;PROCESSED;;03/15/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434830;;;38625988;;;;;
+;20000003;PROCESSED;;03/22/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434831;;;38625988;;;;;
+;20000003;PROCESSED;;03/29/2026;13:00:00;;14:59:00;0450;false;CFMA0051301098;;;434832;;;38625988;;;;;
+;20000003;PROCESSED;;01/19/2026;16:00:00;;17:59:00;0450;false;CFMA0051301098;;;434833;;;38625989;;;;;
